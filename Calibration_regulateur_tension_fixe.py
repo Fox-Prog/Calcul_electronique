@@ -2,15 +2,16 @@
 # Caractéristiques du régulateur
 
 U_out = float(input("Tension de sortie... "))
-U_in_max = float(input("Tension d'entrée min... "))
+U_in_max = float(input("Tension d'entrée max... "))
+U_in_min = float(input("Tension d'entrée min... "))
 I_max = float(input("Intenstié max en sortie... "))
 
 tr = input("Montage avec transistor ? ...Y/n... ")
 
 if tr == 'Y':
     I_max_reg = float(input("Intenstié max pour le régulateur... "))
-    Hfe = int(input("Hfe transistor... "))
-    Vbe = float(input("Vbe transistor... "))
+    Hfe = int(input("Hfe transistor (Mieux vaut le plus faible)... "))
+    Vbe = U_in_max - U_out
 
 # Calcul
     
@@ -18,7 +19,7 @@ if tr == 'Y':
 U_in = (1.4*U_out)
 
 # C1 ______________________________________________
-C1 = 20000/(U_in_max/I_max)
+C1 = 20000/(U_in_min/I_max)
 
 # C4 ______________________________________________
 C4 = C1/10

@@ -30,7 +30,7 @@ def Calcul_TR():
     U_in = float(input("U in MAX... "))
     U_out = float(input("U out... "))
     Ic = float(input("I out... "))
-    Vce_sat = float(input("Vce(sat)... "))
+    Vce_sat = float(input("Vce_sat (Mieux vaut le plus faible)... "))
 
     Vce = (U_in - U_out) - Vce_sat
     Pdiss = (Vce*Ic)
@@ -108,8 +108,8 @@ def Calcul_TR():
         data.append(value_spe)
         data.append("")
         data.append(titles)
-        ic = 0.2
-        while ic < 15.2:
+        ic = 0.1
+        while ic < 15.1:
             Pdiss = (Vce*ic)
             Ta_max = Tj - (Pdiss*Rth_ja)
             Pdiss_mrg = (Pdiss + (Pdiss/4))
@@ -117,7 +117,7 @@ def Calcul_TR():
             
             row = [ic, Ta_max, Rth_diss]
             data.append(row)
-            ic += 0.2
+            ic += 0.1
 
         pyexcel_ods3.save_data(str('Graph_tr_' + nameods), {"Ta_max__Rth_Diss pour Ic":data})
 
